@@ -28,8 +28,11 @@ return new class extends Migration
             $table->text('cliente_observacionmedica');
             $table->timestamp('cliente_fecha_creacion', precision: 0);
             $table->timestamp('cliente_fechaactualizacion', precision: 0);
+            $table->softDeletes();
 
         });
+
+        
     }
 
     /**
@@ -37,6 +40,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        $table->dropSoftDeletes(); 
         Schema::dropIfExists('cliente');
     }
 };
